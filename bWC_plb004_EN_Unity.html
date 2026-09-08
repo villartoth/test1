@@ -226,9 +226,8 @@
         triggerTimedEnd();
       }
 
-      window.onresize = function (event) {
-        handleSize();
-      };
+      window.addEventListener("resize", handleSize, false);
+      window.addEventListener("orientationchange", handleSize, false);
       function gameStart() {
         timedEndFinished = false;
         clearTimedEnd();
@@ -268,7 +267,11 @@
 </div><style id="unityads-video-controls">video::-webkit-media-controls{display:none!important}</style>
 <script id="unityads-adapter">
 (function () {
-  var STORE_URL = "https://play.google.com/store/apps/details?id=com.worm.car.rush.gp";
+  var ANDROID_STORE_URL = "https://play.google.com/store/apps/details?id=com.worm.car.rush.gp";
+  var IOS_STORE_URL = "https://apps.apple.com/us/app/ad-testing/id1463016906";
+  var STORE_URL = /android/i.test(navigator.userAgent || navigator.vendor || "")
+    ? ANDROID_STORE_URL
+    : IOS_STORE_URL;
   var started = false;
   var interactions = 0;
   window.__unityAdsViewable = false;
