@@ -142,20 +142,19 @@ window.setIsOpenLog = function () {};
   </script>
 
 
-<div id="unity-cta" style="display:none;position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:2147483000;padding:13px 38px;border-radius:999px;background:linear-gradient(180deg,#ffd34d,#ffb300);color:#5a3200;font:bold 19px/1 Arial,Helvetica,sans-serif;letter-spacing:.5px;box-shadow:0 4px 12px rgba(0,0,0,.35);cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation">DOWNLOAD</div>
-<style>#unity-cta:active{transform:translateX(-50%) scale(.93);background:linear-gradient(180deg,#ffc233,#ff9e00)}</style>
+
 <script>
 // unity-fix: single store exit - plaintext URLs (Unity uploads scan for them), /android/i forward test, mraid.open preferred
 // TODO: iOS link below is a PLACEHOLDER - replace with the real App Store URL before iOS traffic
 var STORE_URL_IOS = 'https://apps.apple.com/app/id000000000';
 var STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=com.swipe.soccer.one.shot.goal.gp';
 function unityStoreClick() {
-  var url = /android/i.test(navigator.userAgent || '') ? STORE_URL_ANDROID : STORE_URL_IOS;
+  var url = STORE_URL_ANDROID;
   if (window.mraid && typeof mraid.open === 'function') { try { mraid.open(url); return; } catch (e) {} }
   window.open(url, '_blank');
 }
 window.install = unityStoreClick;
-document.getElementById('unity-cta').addEventListener('click', unityStoreClick);
+
 </script>
 <script>
 // unity-fix: MRAID robust gate - ready + viewableChange + stateChange + 500ms poll (8s force), then boot chain

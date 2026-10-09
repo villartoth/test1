@@ -143,7 +143,7 @@ window.gameReady = function () { window.OFFLINE_GAMEREADY = true; };
 var STORE_URL_IOS = 'https://apps.apple.com/app/id000000000';
 var STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=com.swipe.soccer.one.shot.goal.gp';
 function unityStoreClick() {
-  var url = /android/i.test(navigator.userAgent || '') ? STORE_URL_ANDROID : STORE_URL_IOS;
+  var url = STORE_URL_ANDROID;
   if (window.mraid && typeof mraid.open === 'function') { try { mraid.open(url); return; } catch (e) {} }
   window.open(url, '_blank');
 }
