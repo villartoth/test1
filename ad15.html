@@ -1031,8 +1031,14 @@ window.mv_utils = window.mv_utils || {};
     else bind();
   }
   setTimeout(function () { if (!isShown()) vis(false) }, 2000);
+  // 500ms poll: resume as soon as the container reports visible, and FORCE-resume after 8s
+  // even if the container never fires viewableChange/stateChange (some do not - ad9 lesson).
   var n = 0;
-  var poll = setInterval(function () { if (++n > 16) clearInterval(poll) }, 500);
+  var poll = setInterval(function () {
+    n++;
+    if (isShown()) { vis(true); clearInterval(poll); return; }
+    if (n > 16) { vis(true); clearInterval(poll); }
+  }, 500);
 })();
 </script>
 <script>
